@@ -36,6 +36,11 @@ func NewClient(protocol, server string, deadline time.Duration) (*Client, error)
 	}, nil
 }
 
+// Stop disconnects the client
+func (c *Client) Stop() {
+	c.conn.Close()
+}
+
 func generateSTUNTransactionID() []byte {
 	return GenerateTransactionId()[:TransactionIDSize]
 }
